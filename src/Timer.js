@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { server } from "sinon";
 
 class Timer extends Component {
   state = {
@@ -18,6 +19,14 @@ class Timer extends Component {
         <small onClick={this.handleClose}>X</small>
       </section>
     );
+  }
+
+  componentDidMount(){
+    this.interval = setInterval(this.clockTick, 1000)
+  }
+
+  componentWillUnmount(){
+    this.stopClock()
   }
 
   //clock functions
